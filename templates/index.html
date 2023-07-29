@@ -1,20 +1,52 @@
-<!-- index.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>House Price Prediction</title>
-</head>
-<body>
-    <h1>Enter Input for Prediction:</h1>
-    <form action="/predict" method="post">
-        <label for="Area">area:</label>
-        <input type="number" id="area" name="area" required><br>
 
-        <input type="submit" value="Predict">
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>House Price API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>House Price Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+        
+        <label for="Area">Area:</label>
+    	<input type="number" name="area" placeholder="Area" required="required" />
+        
+        <label for="Bedrooms">Bedrooms:</label>
+        <input type="number" name="bedrooms" placeholder="No. of Bedrooms" required="required" />
+		
+        <label for="Bathrooms">Bathrooms:</label>
+        <input type="number" name="bathrooms" placeholder="No. of Bathrooms" required="required" />
+        
+        <label for="Stories">Stories:</label>
+        <input type="number" name="stories" placeholder="No. of Stories" required="required" />
+        
+        <label for="Parking">Parking:</label>
+        <input type="number" name="parking" placeholder="No. of Parking" required="required" /> <br>
+        <br>
+        <br>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
-    {% if prediction_text %}
-    <h2>Prediction Result:</h2>
+
+   <br>
+   <br>
+   {% if prediction_text %}
+   <h2>Prediction Result:</h2>
     <p>{{ prediction_text }}</p>
     {% endif %}
+ </div>
+
+
 </body>
 </html>
